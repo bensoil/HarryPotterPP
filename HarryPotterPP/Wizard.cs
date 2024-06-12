@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HarryPotterPP
+﻿namespace HarryPotterPP
 {
     internal class Wizard
     {
@@ -19,22 +12,24 @@ namespace HarryPotterPP
 
         public string GetInventoryStr()
         {
-            if(_inventory.Count() == 0)
+            if (_inventory.Count() == 0)
             {
                 return "nothing";
             }
-            
 
-         return  string.Join(",", _inventory.ToArray());
-            
+            return string.Join(",", _inventory.ToArray());
         }
 
+        public void AddItem(string item)
+        {
+            _inventory.Add(item);
+        }
 
         public Wizard(string name, string house)
         {
             _name = name;
             _house = house;
-            _inventory = new List<string>(); 
+            _inventory = new List<string>();
         }
     }
 }

@@ -1,13 +1,53 @@
-﻿
-using HarryPotterPP;
+﻿using HarryPotterPP;
+
+Spell[] magics = {
+        new Spell("A feather is now flying!", "vingardium leviosa"),
+        new Spell("Fireworks!", "hokus pokus"),
+};
 
 void Main()
 {
     Wizard harry = new Wizard("Harry Potter", "Gryffindoor");
+    Store magicShop = new Store(new List<string>() { "owl", "rat", "cat", "Phoenix Wand", "Unicorn Wand", "Troll Wand" });
 
     Console.WriteLine($"This is {harry.Name}, he is housed in {harry.House}. He has {harry.GetInventoryStr()}");
 
-    Store magicShop = new Store(new List<string>() { "owl", "rat", "cat", "Phoenix Wand", "Unicorn Wand", "Troll Wand" });
+    while (true)
+    {
+        Console.WriteLine("1. Go to store");
+        Console.WriteLine("2. Do magic");
+        Console.WriteLine("3. View inventory");
+
+        char input = Console.ReadKey().KeyChar;
+        Console.WriteLine();
+
+        switch (input)
+        {
+            case '1':
+                magicShop.BuyMenu(harry);
+                break;
+            case '2':
+                doMagic(Console.ReadLine());
+                break;
+            case '3':
+                Console.WriteLine(harry.GetInventoryStr());
+                break;
+        }
+    }
+}
+
+void doMagic(string input)
+{
+    foreach (Spell m in magics)
+    {
+        if (input == m.Trigger)
+        {
+            Console.WriteLine(m.Action);
+            return;
+        }
+    }
+
+    Console.WriteLine("Nothing happens");
 }
 
 Main();
